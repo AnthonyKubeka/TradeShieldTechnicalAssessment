@@ -14,6 +14,13 @@ public class DeepestPitAnswer
         }
     }
 
+    private class Triplet
+    {
+        public int? P { get; set; }
+        public int? Q { get; set; }
+        public int? R { get; set; }
+    }
+
     public static int Solution(int[] points)
     {
         //a pit (P, Q, R) is basically where A[P] until A[Q] strictly goes down
@@ -54,6 +61,30 @@ public class DeepestPitAnswer
             }
 
         }
+
+        for (int i = 0; i < points.Length - 1; i++)
+        {
+            var triplet = new Triplet();
+            triplet.P = points[i];
+            if (points[triplet.P.Value+1] < points[triplet.P.Value])
+            {
+               //A[Q] = A[i+1]
+               triplet.Q = points[triplet.P.Value + 1];
+            }
+            if (triplet.Q.HasValue)
+            {
+                if (triplet.Q.Value < points[triplet.Q.Value])
+                {
+
+                }
+            }
+
+
+        }
+
+        //startX = P
+        //turningPointX = Q
+
 
     }
 }
