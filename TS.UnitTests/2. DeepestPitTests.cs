@@ -13,4 +13,13 @@ public class DeepestPitTests
 
         Assert.AreEqual(4, result);
     }
+
+    [TestMethod]
+    public void Q2_BasicNominalTestTwo()
+    {
+        var points = new[] { 1, 2, 3, 1, 2, 3, 1, 2, 3 };
+        var result = DeepestPitAnswer.Solution(points);
+
+        Assert.AreEqual(2, result);
+    }
 }
