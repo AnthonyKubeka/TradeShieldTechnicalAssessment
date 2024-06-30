@@ -17,6 +17,12 @@ public class LongestSentanceAnswer
         while (!string.IsNullOrEmpty(s))
         {
             var sentenceIndex = s.IndexOfAny(sentenceDelimeters);
+            if (sentenceIndex < 0)
+            {
+                sentences.Add(s.Trim());
+                break;
+            }
+
             var sentence = s.Substring(0, sentenceIndex + 1).Trim();
             sentences.Add(sentence);
             s = s.Remove(0, sentenceIndex + 1);
