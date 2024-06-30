@@ -14,10 +14,10 @@ public class LongestSentanceAnswer
             '!'
         };
 
-        for (int i = 0; i < 100; i++)
+        while (!string.IsNullOrEmpty(s))
         {
             var sentenceIndex = s.IndexOfAny(sentenceDelimeters);
-            var sentence = s.Substring(0, sentenceIndex + 1);
+            var sentence = s.Substring(0, sentenceIndex + 1).Trim();
             sentences.Add(sentence);
             s = s.Remove(0, sentenceIndex + 1);
         }
