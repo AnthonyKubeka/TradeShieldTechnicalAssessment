@@ -6,7 +6,6 @@ public class LongestSentanceAnswer
     public static int Solution(string s)
     {
         int answer = 0;
-        var sentences = new List<string>();
         var sentenceDelimeters = new char[]
         {
             '?',
@@ -14,24 +13,11 @@ public class LongestSentanceAnswer
             '!'
         };
 
-        while (!string.IsNullOrEmpty(s))
-        {
-            var sentenceIndex = s.IndexOfAny(sentenceDelimeters);
-            if (sentenceIndex < 0)
-            {
-                sentences.Add(s.Trim());
-                break;
-            }
-
-            var sentence = s.Substring(0, sentenceIndex + 1).Trim();
-            sentences.Add(sentence);
-            s = s.Remove(0, sentenceIndex + 1);
-        }
+        var sentences = s.Split(sentenceDelimeters, StringSplitOptions.RemoveEmptyEntries);
 
         foreach (var sentence in sentences)
         {
-
-            var words = sentence.Split(" ").Length;
+            var words = sentence.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Length;
             if (answer < words)
             {
                 answer = words;
