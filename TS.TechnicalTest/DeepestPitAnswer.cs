@@ -2,17 +2,6 @@
 
 public class DeepestPitAnswer
 {
-    private class Coordinate
-    {
-        public int X { get; set; }
-        public int Y { get; set; }
-
-        public Coordinate(int x, int y)
-        {
-            this.X = x;
-            this.Y = y;
-        }
-    }
 
     private class Triplet
     {
@@ -37,37 +26,13 @@ public class DeepestPitAnswer
          * pits can overlap (2, 3, 4) and (2, 3, 5)
          */
 
-        var coordinates = new List<Coordinate>();
-        var xPosition = 0;
-        foreach (var point in points)
-        {
-            coordinates.Add(new Coordinate(xPosition, point));
-            xPosition++;
-        }
-
-        // a pit starts when we go down.
-        //if we are declining starting at ai.Y, then we continue to decline until ai.Y <= a(i+1).Y
-        
-
-        var pitCoordinates = new List<Coordinate>();
-        var turningPoints = new List<Coordinate>();
-        for (int i = 0; i < coordinates.Count - 1; i++)
-        {
-            var isDeclining = coordinates[i].Y > coordinates[i + 1].Y;
-            if (isDeclining)
-            {
-                pitCoordinates.Add(coordinates[i]);
-                pitCoordinates.Add(coordinates[i + 1]);
-            }
-
-        }
-
         var triplets = new List<Triplet>(); 
 
         for (int i = 0; i < points.Length - 1; i++)
         {
             var triplet = new Triplet();
             triplet.P = i;
+
             if (points[triplet.P.Value+1] < points[triplet.P.Value])
             {
                //A[Q] = A[P+1]
