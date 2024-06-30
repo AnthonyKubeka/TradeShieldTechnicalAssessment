@@ -62,6 +62,8 @@ public class DeepestPitAnswer
 
         }
 
+        var triplets = new List<Triplet>(); 
+
         for (int i = 0; i < points.Length - 1; i++)
         {
             var triplet = new Triplet();
@@ -69,17 +71,17 @@ public class DeepestPitAnswer
             if (points[triplet.P.Value+1] < points[triplet.P.Value])
             {
                //A[Q] = A[P+1]
-               triplet.Q = points[triplet.P.Value + 1];
+               triplet.Q = triplet.P.Value + 1;
             }
             if (triplet.Q.HasValue)
             {
                 if (points[triplet.Q.Value] < points[triplet.Q.Value+1])
                 {
                     //A[R] = A[Q+1]
-                    triplet.R = points[triplet.Q.Value + 1];
+                    triplet.R = triplet.Q.Value + 1;
                 }
             }
-
+            triplets.Add(triplet); 
         }
         return -1; 
 
