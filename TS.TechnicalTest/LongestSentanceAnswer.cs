@@ -22,6 +22,16 @@ public class LongestSentanceAnswer
             s = s.Remove(0, sentenceIndex + 1);
         }
 
+        foreach (var sentence in sentences)
+        {
+
+            var words = sentence.Split(" ").Length;
+            if (answer < words)
+            {
+                answer = words;
+            }
+        }
+
         return answer; 
     }
 }
