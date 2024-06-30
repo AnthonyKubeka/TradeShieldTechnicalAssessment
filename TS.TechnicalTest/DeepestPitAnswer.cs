@@ -56,7 +56,6 @@ public class DeepestPitAnswer
             if (pitTriplet.P.HasValue && pitTriplet.Q.HasValue && pitTriplet.R.HasValue)
             {
                 pitTriplets.Add(pitTriplet);
-
             }
         }
         
