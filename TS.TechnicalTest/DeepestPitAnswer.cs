@@ -31,43 +31,43 @@ public class DeepestPitAnswer
          * pits can overlap (2, 3, 4) and (2, 3, 5)
          */
 
-        var triplets = new List<Triplet>(); 
+        var pitTriplets = new List<Triplet>(); 
 
         for (int i = 0; i < points.Length - 1; i++)
         {
-            var triplet = new Triplet();
-            triplet.P = i;
+            var pitTriplet = new Triplet();
+            pitTriplet.P = i;
 
-            if (points[triplet.P.Value+1] < points[triplet.P.Value])
+            if (points[pitTriplet.P.Value+1] < points[pitTriplet.P.Value])
             {
-               //A[Q] = A[P+1]
-               triplet.Q = triplet.P.Value + 1;
+                //A[Q] = A[P+1]
+                pitTriplet.Q = pitTriplet.P.Value + 1;
             }
 
-            if (triplet.Q.HasValue)
+            if (pitTriplet.Q.HasValue)
             {
-                if (points[triplet.Q.Value] < points[triplet.Q.Value+1])
+                if (points[pitTriplet.Q.Value] < points[pitTriplet.Q.Value+1])
                 {
                     //A[R] = A[Q+1]
-                    triplet.R = triplet.Q.Value + 1;
+                    pitTriplet.R = pitTriplet.Q.Value + 1;
                 }
             }
 
-            if (triplet.P.HasValue && triplet.Q.HasValue && triplet.R.HasValue)
+            if (pitTriplet.P.HasValue && pitTriplet.Q.HasValue && pitTriplet.R.HasValue)
             {
-                triplets.Add(triplet);
+                pitTriplets.Add(pitTriplet);
 
             }
         }
         
-        if (!triplets.Any())
+        if (!pitTriplets.Any())
         {
             return -1; 
         }
 
         var maxDepth = 0; 
 
-        foreach (var triplet in triplets)
+        foreach (var triplet in pitTriplets)
         {
             if (maxDepth < triplet.GetDepth(points))
             {
