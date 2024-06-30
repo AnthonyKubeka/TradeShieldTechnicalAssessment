@@ -8,6 +8,11 @@ public class DeepestPitAnswer
         public int? P { get; set; }
         public int? Q { get; set; }
         public int? R { get; set; }
+
+        public int GetDepth(int[] points)
+        {
+            return Math.Min(points[P.Value] - points[Q.Value], points[R.Value] - points[Q.Value]); 
+        }
     }
 
     public static int Solution(int[] points)
@@ -38,6 +43,7 @@ public class DeepestPitAnswer
                //A[Q] = A[P+1]
                triplet.Q = triplet.P.Value + 1;
             }
+
             if (triplet.Q.HasValue)
             {
                 if (points[triplet.Q.Value] < points[triplet.Q.Value+1])
@@ -46,13 +52,29 @@ public class DeepestPitAnswer
                     triplet.R = triplet.Q.Value + 1;
                 }
             }
-            triplets.Add(triplet); 
+
+            if (triplet.P.HasValue && triplet.Q.HasValue && triplet.R.HasValue)
+            {
+                triplets.Add(triplet);
+
+            }
         }
-        return -1; 
+        
+        if (!triplets.Any())
+        {
+            return -1; 
+        }
 
-        //startX = P
-        //turningPointX = Q
+        var maxDepth = 0; 
 
+        foreach (var triplet in triplets)
+        {
+            if (maxDepth < triplet.GetDepth(points))
+            {
+                maxDepth = triplet.GetDepth(points);
+            }
+        }
 
+        return maxDepth; 
     }
 }
