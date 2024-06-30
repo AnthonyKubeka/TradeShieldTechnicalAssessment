@@ -65,22 +65,23 @@ public class DeepestPitAnswer
         for (int i = 0; i < points.Length - 1; i++)
         {
             var triplet = new Triplet();
-            triplet.P = points[i];
+            triplet.P = i;
             if (points[triplet.P.Value+1] < points[triplet.P.Value])
             {
-               //A[Q] = A[i+1]
+               //A[Q] = A[P+1]
                triplet.Q = points[triplet.P.Value + 1];
             }
             if (triplet.Q.HasValue)
             {
-                if (triplet.Q.Value < points[triplet.Q.Value])
+                if (points[triplet.Q.Value] < points[triplet.Q.Value+1])
                 {
-
+                    //A[R] = A[Q+1]
+                    triplet.R = points[triplet.Q.Value + 1];
                 }
             }
 
-
         }
+        return -1; 
 
         //startX = P
         //turningPointX = Q
